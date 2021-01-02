@@ -12,20 +12,17 @@ class App extends React.Component {
   }
 
   handleChange(id) {
-    // Update state so that the item with the given id flips `completed` from false to true (or vise versa)
-    // Remember not to modify prevState directly, but instead to return a new version of state with the change you want included in that update. (Think how you might use the `.map` method to do this)
-    this.setState((prevState) => {
-      const updatedTodos = prevState.todos.map((todo) => {
-        if (todo.id === id) {
-          console.log("todo.id: ", todo.id, " id: ", id);
-          todo.completed = !todo.completed;
-        }
-        console.log(todo);
-        return todo;
-      });
-      return {
-        todos: updatedTodos,
-      };
+    const updatedTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+    });
+
+    this.setState({
+      todos: updatedTodos,
     });
   }
 
